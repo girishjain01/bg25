@@ -21,6 +21,10 @@ const schema = new mongoose.Schema({
         type:String,
         
     },
+    des3:{
+        type:String,
+        
+    },
     
 });
 
