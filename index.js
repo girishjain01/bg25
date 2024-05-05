@@ -1,14 +1,11 @@
 const express = require("express");
 const Project = require("./dbconn/connection");
+const Sroject = require("./dbconn/srojectconnection");
 const app = express();
 const cors = require('cors');
 app.use(cors());
-
-
 app.use(express.json()); // For parsing application/json
-
 const port = 5000;
-
 // POST route to add a new project
 app.post("/", async (req, res) => {
     const myProject = new Project(req.body);
@@ -19,6 +16,17 @@ app.post("/", async (req, res) => {
         res.status(500).send(error);
     }
 });
+app.post("/sroject", async (req, res) => {
+    const mySroject = new Sroject(req.body);
+    try {
+        const dataSave = await mySroject.save();
+        res.status(201).send(dataSave);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
+
 app.put("/projects/:id", async (req, res) => {
     try {
         const project = await Project.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -38,6 +46,15 @@ app.get("/projects/:id", async (req, res) => {
         }
         res.send(project);
     } catch (error) {
+        res.status(500).send(error);
+    }
+});
+app.get("/sroject", async (req, res) => {
+    try {
+        const Srojec = await Sroject.find({});
+        res.status(200).send(Srojec);
+    } catch (error) {
+        console.log(error.message);
         res.status(500).send(error);
     }
 });
