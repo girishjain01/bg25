@@ -37,7 +37,7 @@ app.put("/projects/:id", async (req, res) => {
         res.status(500).send(error);
     }
 });
-app.put("/sroject/:id", async (req, res) => {
+app.put("/srojects/:id", async (req, res) => {
     try {
         const Srojec = await Sroject.find({});
         res.status(200).send(Srojec);
