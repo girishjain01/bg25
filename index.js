@@ -26,7 +26,6 @@ app.post("/sroject", async (req, res) => {
     }
 });
 
-
 app.put("/projects/:id", async (req, res) => {
     try {
         const project = await Project.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -49,7 +48,7 @@ app.get("/projects/:id", async (req, res) => {
         res.status(500).send(error);
     }
 });
-app.get("/sroject", async (req, res) => {
+app.get("/sroject/:id", async (req, res) => {
     try {
         const Srojec = await Sroject.find({});
         res.status(200).send(Srojec);
