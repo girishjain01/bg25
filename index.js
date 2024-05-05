@@ -6,7 +6,7 @@ const cors = require('cors');
 const Sroject = require("./dbconn/srojectconnection");
 app.use(cors());
 app.use(express.json()); // For parsing application/json
-const port = 5000;
+const port = 3000;
 // POST route to add a new project
 app.post("/", async (req, res) => {
     const myProject = new Project(req.body);
@@ -41,11 +41,11 @@ app.put("/projects/:id", async (req, res) => {
 });
 app.put("/srojects/:id", async (req, res) => {
     try {
-        const updatedSroject = await Sroject.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        if (!updatedSroject) {
-            return res.status(404).send('Sroject not found');
+        const sroject = await Sroject.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if (!sroject) {
+            return res.status(404).send('प्रोजेक्ट नहीं मिला');
         }
-        res.send(updatedSroject);
+        res.send(sroject);
     } catch (error) {
         res.status(500).send(error);
     }
@@ -53,6 +53,17 @@ app.put("/srojects/:id", async (req, res) => {
 app.get("/projects/:id", async (req, res) => {
     try {
         const project = await Project.findById(req.params.id);
+        if (!project) {
+            return res.status(404).send('प्रोजेक्ट नहीं मिला');
+        }
+        res.send(project);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+app.get("/sroject/:id", async (req, res) => {
+    try {
+        const project = await Sroject.findById(req.params.id);
         if (!project) {
             return res.status(404).send('प्रोजेक्ट नहीं मिला');
         }

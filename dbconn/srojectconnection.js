@@ -12,14 +12,11 @@ const schema = new mongoose.Schema({
         type: String,
         required: true
     },
-
     des1:{
-        type:String,
-      
+        type:String, 
     },
     des2:{
         type:String,
-       
     },
     des3:{
         type:String,    
