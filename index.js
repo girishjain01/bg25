@@ -17,7 +17,7 @@ app.post("/", async (req, res) => {
         res.status(500).send(error);
     }
 });
-app.post("/srojects", async (req, res) => {
+app.post("/sroject", async (req, res) => {
     const mySroject = new Sroject(req.body);
     try {
         const dataSave = await mySroject.save();
@@ -28,7 +28,7 @@ app.post("/srojects", async (req, res) => {
 });
 
 
-app.put("/projects/:id", async (req, res) => {
+app.put("/project/:id", async (req, res) => {
     try {
         const project = await Project.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!project) {
@@ -39,7 +39,7 @@ app.put("/projects/:id", async (req, res) => {
         res.status(500).send(error);
     }
 });
-app.put("/srojects/:id", async (req, res) => {
+app.put("/sroject/:id", async (req, res) => {
     try {
         const sroject = await Sroject.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!sroject) {
@@ -50,7 +50,7 @@ app.put("/srojects/:id", async (req, res) => {
         res.status(500).send(error);
     }
 });
-app.get("/projects/:id", async (req, res) => {
+app.get("/project/:id", async (req, res) => {
     try {
         const project = await Project.findById(req.params.id);
         if (!project) {
@@ -83,7 +83,7 @@ app.get("/sroject", async (req, res) => {
 });
 // GET route to fetch all projects
 // Express सर्वर कोड
-app.get("/projects", async (req, res) => {
+app.get("/project", async (req, res) => {
     try {
         const projects = await Project.find({});
         res.status(200).send(projects);
