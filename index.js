@@ -17,7 +17,7 @@ app.post("/", async (req, res) => {
         res.status(500).send(error);
     }
 });
-app.post("/sroject", async (req, res) => {
+app.post("/srojects", async (req, res) => {
     const mySroject = new Sroject(req.body);
     try {
         const dataSave = await mySroject.save();
