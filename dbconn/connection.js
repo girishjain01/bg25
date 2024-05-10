@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
+require ('dotenv').config();
 
-// mongoose.connect('mongodb+srv://gngit2010:gngjain1234@cluster0.dahu3zg.mongodb.net/6prilmahaveer')
-//   .then(() => {
-//     console.log("our connection is successfully");
-//   }).catch((e) => {
-//     console.log(e);
-//   });
+mongoose.connect('mongodb+srv://gngit2010:gngjain1234@cluster0.dahu3zg.mongodb.net/6prilmahaveer')
+  .then(() => {
+    console.log("our connection is successfully");
+  }).catch((e) => {
+    console.log(e);
+  });
 
 const schema = new mongoose.Schema({
     _id: {
