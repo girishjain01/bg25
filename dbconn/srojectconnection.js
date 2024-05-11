@@ -121,6 +121,24 @@ const schema = new mongoose.Schema({
     des36:{
     type:String,
     },
+    des37:{
+      type:String,
+      },
+      des38:{
+      type:String,
+      },
+      des39:{
+      type:String,
+      },
+      des40:{
+      type:String,
+      },
+      des41:{
+      type:String,
+      },
+      des42:{
+      type:String,
+      },
 });
 
 const Sroject = mongoose.model("Sroject", schema);
