@@ -1,11 +1,36 @@
+<<<<<<< HEAD
 const mongoose = require("mongoose");
 require('dotenv').config();
+=======
+require('dotenv').config(); // यह सुनिश्चित करता है कि .env फ़ाइल के वेरिएबल्स लोड हो जाएं
+>>>>>>> 08756358c33d4229e1398e1055f6b20dc9816fdb
 
-mongoose.connect('mongodb+srv://gngit2010:gngjain1234@cluster0.dahu3zg.mongodb.net/6prilmahaveer')
+const mongoose = require('mongoose');
+
+// .env फ़ाइल से डेटाबेस URL लेना
+const dbURI = process.env.MONGO_URI;
+
+// MongoDB कनेक्शन सेटअप
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected successfully'))
+  .catch(err => console.log('MongoDB connection error:', err));
+
+module.exports = mongoose;
+const mongoose = require("mongoose");
+require('dotenv').config(); // Ensure this is at the top to load environment variables early
+
+// Use the environment variable for the MongoDB URI
+const mongoURI = process.env.MONGO_URI;
+
+mongoose.connect(mongoURI) // Use the environment variable here
   .then(() => {
+<<<<<<< HEAD
     console.log("Connection to the database was successful");
+=======
+    console.log("Our connection is successfully established");
+>>>>>>> 08756358c33d4229e1398e1055f6b20dc9816fdb
   }).catch((e) => {
-    console.log(e);
+    console.error("Failed to connect to MongoDB:", e);
   });
 
 const schema = new mongoose.Schema({
