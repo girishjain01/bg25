@@ -1,10 +1,11 @@
 const express = require("express");
 const cors = require('cors');
-require ('dotenv').config();
+require('dotenv').config();
 const Project = require("./dbconn/connection");
 const Sroject = require("./dbconn/srojectconnection");
 const app = express();
 const port = process.env.PORT || 3000;
+
 app.use(cors());
 app.use(express.json()); // For parsing application/json
 
@@ -18,12 +19,22 @@ async function addDocument(Model, req, res) {
     }
 }
 
-// Generic function to update a document
 async function updateDocument(Model, req, res) {
     try {
         const updatedDocument = await Model.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
         if (!updatedDocument) return res.status(404).send('प्रोजेक्ट नहीं मिला');
         res.send(updatedDocument);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
+// New function to delete a document by ID
+async function deleteDocument(Model, req, res) {
+    try {
+        const deletedDocument = await Model.findByIdAndDelete(req.params.id);
+        if (!deletedDocument) return res.status(404).send('प्रोजेक्ट नहीं मिला');
+        res.send(deletedDocument);
     } catch (error) {
         res.status(500).send(error);
     }
@@ -41,6 +52,7 @@ app.get("/project/:id", async (req, res) => {
     }
 });
 app.put("/project/:id", (req, res) => updateDocument(Project, req, res));
+app.delete("/project/:id", (req, res) => deleteDocument(Project, req, res)); // New delete route
 
 // Routes for Sroject
 app.post("/sroject", (req, res) => addDocument(Sroject, req, res));
@@ -54,6 +66,7 @@ app.get("/sroject/:id", async (req, res) => {
     }
 });
 app.put("/sroject/:id", (req, res) => updateDocument(Sroject, req, res));
+app.delete("/sroject/:id", (req, res) => deleteDocument(Sroject, req, res)); // New delete route
 
 // Start the server
 app.listen(port, () => {
