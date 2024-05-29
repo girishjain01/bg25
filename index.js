@@ -8,7 +8,6 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json()); // For parsing application/json
 
-// Generic function to add a new document
 async function addDocument(Model, req, res) {
     const document = new Model(req.body);
     try {
