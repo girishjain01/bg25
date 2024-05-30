@@ -3,11 +3,13 @@ const cors = require('cors');
 require('dotenv').config();
 const Project = require("./dbconn/connection");
 const Sroject = require("./dbconn/srojectconnection");
+const srojectRoutes = require("./routes/srojectRoutes");
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json()); // For parsing application/json
+app.use("/sroject", srojectRoutes);
 
 async function addDocument(Model, req, res) {
     const document = new Model(req.body);
@@ -42,6 +44,14 @@ async function deleteDocument(Model, req, res) {
 
 // Routes for Project
 app.post("/project", (req, res) => addDocument(Project, req, res));
+app.get("/project", async (req, res) => {
+    try {
+        const projects = await Project.find({});
+        res.send(projects);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
 app.get("/project/:id", async (req, res) => {
     try {
         const project = await Project.findById(req.params.id);
