@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 const mongoose = require("mongoose");
 require('dotenv').config();
-=======
-require('dotenv').config(); // यह सुनिश्चित करता है कि .env फ़ाइल के वेरिएबल्स लोड हो जाएं
->>>>>>> 08756358c33d4229e1398e1055f6b20dc9816fdb
 
 const mongoose = require('mongoose');
 
@@ -24,11 +20,7 @@ const mongoURI = process.env.MONGO_URI;
 
 mongoose.connect(mongoURI) // Use the environment variable here
   .then(() => {
-<<<<<<< HEAD
     console.log("Connection to the database was successful");
-=======
-    console.log("Our connection is successfully established");
->>>>>>> 08756358c33d4229e1398e1055f6b20dc9816fdb
   }).catch((e) => {
     console.error("Failed to connect to MongoDB:", e);
   });
