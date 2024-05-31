@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require('cors');
 require('dotenv').config();
+<<<<<<< HEAD
 const mongoose = require('mongoose');
 const Project = require("./models/Project");
 // const Sroject = require("./models/Sroject");
@@ -23,6 +24,18 @@ mongoose.connect(dbURI, {
   .then(() => console.log('MongoDB connected successfully'))
   .catch(err => console.log('MongoDB connection error:', err));
 
+=======
+const Project = require("./dbconn/connection");
+const Sroject = require("./dbconn/srojectconnection");
+const srojectRoutes = require("./routes/srojectRoutes");
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.use(cors());
+app.use(express.json()); // For parsing application/json
+app.use("/sroject", srojectRoutes);
+
+>>>>>>> 4efac8b9e5599bca1030e313d80f983fe97a7460
 async function addDocument(Model, req, res) {
     const document = new Model(req.body);
     try {
@@ -43,6 +56,10 @@ async function updateDocument(Model, req, res) {
     }
 }
 
+<<<<<<< HEAD
+=======
+// New function to delete a document by ID
+>>>>>>> 4efac8b9e5599bca1030e313d80f983fe97a7460
 async function deleteDocument(Model, req, res) {
     try {
         const deletedDocument = await Model.findByIdAndDelete(req.params.id);
@@ -53,13 +70,20 @@ async function deleteDocument(Model, req, res) {
     }
 }
 
+<<<<<<< HEAD
+=======
+// Routes for Project
+>>>>>>> 4efac8b9e5599bca1030e313d80f983fe97a7460
 app.post("/project", (req, res) => addDocument(Project, req, res));
 app.get("/project", async (req, res) => {
     try {
         const projects = await Project.find({});
         res.send(projects);
     } catch (error) {
+<<<<<<< HEAD
         console.error('Error fetching projects:', error);
+=======
+>>>>>>> 4efac8b9e5599bca1030e313d80f983fe97a7460
         res.status(500).send(error);
     }
 });
@@ -73,7 +97,11 @@ app.get("/project/:id", async (req, res) => {
     }
 });
 app.put("/project/:id", (req, res) => updateDocument(Project, req, res));
+<<<<<<< HEAD
 app.delete("/project/:id", (req, res) => deleteDocument(Project, req, res));
+=======
+app.delete("/project/:id", (req, res) => deleteDocument(Project, req, res)); // New delete route
+>>>>>>> 4efac8b9e5599bca1030e313d80f983fe97a7460
 
 app.post("/sroject", (req, res) => addDocument(Sroject, req, res));
 app.get("/sroject/:id", async (req, res) => {
@@ -188,7 +216,11 @@ app.get("/sroject/:id", async (req, res) => {
     }
 });
 app.put("/sroject/:id", (req, res) => updateDocument(Sroject, req, res));
+<<<<<<< HEAD
 app.delete("/sroject/:id", (req, res) => deleteDocument(Sroject, req, res));
+=======
+app.delete("/sroject/:id", (req, res) => deleteDocument(Sroject, req, res)); // New delete route
+>>>>>>> 4efac8b9e5599bca1030e313d80f983fe97a7460
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
